@@ -31,6 +31,7 @@ const Home = () => {
     Record<string, string>
   >({});
   const [additionalValues, setAdditionalValues] = useState<Record<string, string>>({});
+  const [additionalEnabled, setAdditionalEnabled] = useState(true);
   const [splitPercent, setSplitPercent] = useState(50);
   const [timeHorizon, setTimeHorizon] = useState(10);
 
@@ -55,7 +56,7 @@ const Home = () => {
   const monthlyContribution =
     Number(investmentValues.monthlyContribution) || 300;
 
-  const additionalAmount = Number(additionalValues.amount) || 0;
+  const additionalAmount = additionalEnabled ? (Number(additionalValues.amount) || 0) : 0;
   const extraToLoan = additionalAmount * (1 - splitPercent / 100);
   const extraToInvest = additionalAmount * (splitPercent / 100);
 
@@ -145,14 +146,22 @@ const Home = () => {
                 <label htmlFor="additionalPayments" className="block text-sm font-medium text-[#A9A1C1] mb-1">
                   Additional Payments
                 </label>
-                <input
-                  type="text"
-                  id="additionalPayments"
-                  value={additionalValues.amount || ''}
-                  onChange={(e) => handleAdditionalChange('amount', e.target.value)}
-                  placeholder="300"
-                  className="w-full px-3 py-2 bg-[#171421] border border-[#3D3554] rounded-lg text-[#E5C07B] placeholder-[#6B6483] focus:ring-2 focus:ring-[#C792EA] focus:border-[#C792EA] outline-none transition-colors"
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="additionalPayments"
+                    value={additionalValues.amount || ''}
+                    onChange={(e) => handleAdditionalChange('amount', e.target.value)}
+                    placeholder="300"
+                    className="w-full px-3 py-2 bg-[#171421] border border-[#3D3554] rounded-lg text-[#E5C07B] placeholder-[#6B6483] focus:ring-2 focus:ring-[#C792EA] focus:border-[#C792EA] outline-none transition-colors"
+                  />
+                  <input
+                    type="checkbox"
+                    checked={additionalEnabled}
+                    onChange={(e) => setAdditionalEnabled(e.target.checked)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 accent-[#C792EA] cursor-pointer"
+                  />
+                </div>
               </div>
               <input
                 type="range"

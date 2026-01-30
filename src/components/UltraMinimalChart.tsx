@@ -40,8 +40,7 @@ const UltraMinimalChart = ({
           pointSize={0}
           lineWidth={2}
           useMesh={true}
-          enableCrosshair={true}
-          crosshairType="bottom-left"
+          enableSlices="x"
           enableGridX={false}
           enableGridY={false}
           theme={{
@@ -52,8 +51,14 @@ const UltraMinimalChart = ({
               legend: { text: { fill: "#A9A1C1" } },
               domain: { line: { stroke: "#3D3554" } },
             },
-            crosshair: { line: { stroke: "#A9A1C1", strokeOpacity: 0.5 } },
-            tooltip: { container: { background: "#171421", color: "#A9A1C1" } },
+            crosshair: { line: { stroke: "#C792EA" } },
+            tooltip: {
+              container: {
+                background: "#171421",
+                color: "#A9A1C1",
+                borderRadius: "8px",
+              },
+            },
           }}
           colors={colors}
           legends={[
