@@ -22,7 +22,7 @@ const UltraMinimalChart = ({
   colors = ['#C792EA', '#89DDFF'],
 }: UltraMinimalChartProps) => {
   return (
-    <div className="h-80 flex">
+    <div className="h-full flex">
       <div className="flex items-center justify-center w-8">
         <h3 className="text-lg font-semibold text-[#E8E2F4] -rotate-90 whitespace-nowrap">{title}</h3>
       </div>

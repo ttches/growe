@@ -77,10 +77,10 @@ const Home = () => {
   }, [loanAmount, loanInterest, loanPayment, initialAmount, returnRate, monthlyContribution, timeHorizon])
 
   return (
-    <div className="min-h-screen bg-[#171421]">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-[1fr_3fr] gap-8">
-          <div className="space-y-6">
+    <div className="h-screen bg-[#171421] overflow-hidden">
+      <div className="h-full max-w-7xl mx-auto px-4 py-8">
+        <div className="h-full grid grid-cols-[1fr_3fr] gap-8">
+          <div className="space-y-6 overflow-y-auto">
             <InputSection
               title="Loan Details"
               fields={loanFields}
@@ -108,10 +108,16 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
-            <UltraMinimalChart title="Loan Balance" data={chartData.loanBalanceData} />
-            <UltraMinimalChart title="Investment Growth" data={chartData.investmentGrowthData} />
-            <UltraMinimalChart title="Net Worth" data={chartData.netWorthData} />
+          <div className="flex flex-col gap-4 h-full">
+            <div className="flex-1 min-h-0">
+              <UltraMinimalChart title="Loan Balance" data={chartData.loanBalanceData} />
+            </div>
+            <div className="flex-1 min-h-0">
+              <UltraMinimalChart title="Investment Growth" data={chartData.investmentGrowthData} />
+            </div>
+            <div className="flex-1 min-h-0">
+              <UltraMinimalChart title="Net Worth" data={chartData.netWorthData} />
+            </div>
           </div>
         </div>
       </div>
