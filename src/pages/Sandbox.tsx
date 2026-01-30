@@ -1,97 +1,97 @@
 import {
-  Graph01,
-  Graph02,
-  Graph03,
-  Graph04,
-  Graph05,
-  Graph06,
-  Graph07,
-  Graph08,
-  Graph09,
-  Graph10,
-  Graph11,
-  Graph12,
-  Graph13,
-  Graph14,
-  Graph15,
-  Graph16,
-  Graph17,
-  Graph18,
-  Graph19,
-  Graph20,
-} from '../sandbox/graphs'
+  UltraMinimal01,
+  UltraMinimal02,
+  UltraMinimal03,
+  UltraMinimal04,
+  UltraMinimal05,
+  UltraMinimal06,
+  UltraMinimal07,
+  UltraMinimal08,
+  UltraMinimal09,
+  UltraMinimal10,
+  UltraMinimal11,
+  UltraMinimal12,
+  UltraMinimal13,
+  UltraMinimal14,
+  UltraMinimal15,
+  UltraMinimal16,
+  UltraMinimal17,
+  UltraMinimal18,
+  UltraMinimal19,
+  UltraMinimal20,
+} from '../sandbox/ultra_minimal'
 
 const Sandbox = () => {
   return (
     <div className="min-h-screen bg-[#171421]">
       <div className="max-w-6xl mx-auto px-4 py-8">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold text-[#E8E2F4]">Chart Sandbox</h1>
+          <h1 className="text-3xl font-bold text-[#E8E2F4]">Ultra Minimal Color Variations</h1>
           <p className="text-[#6B6483] mt-2">
-            20 graph style variations - hover to see details
+            20 color schemes - hover to see details
           </p>
         </header>
 
         <div className="space-y-8">
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph01 />
+            <UltraMinimal01 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph02 />
+            <UltraMinimal02 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph03 />
+            <UltraMinimal03 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph04 />
+            <UltraMinimal04 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph05 />
+            <UltraMinimal05 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph06 />
+            <UltraMinimal06 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph07 />
+            <UltraMinimal07 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph08 />
+            <UltraMinimal08 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph09 />
+            <UltraMinimal09 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph10 />
+            <UltraMinimal10 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph11 />
+            <UltraMinimal11 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph12 />
+            <UltraMinimal12 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph13 />
+            <UltraMinimal13 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph14 />
+            <UltraMinimal14 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph15 />
+            <UltraMinimal15 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph16 />
+            <UltraMinimal16 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph17 />
+            <UltraMinimal17 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph18 />
+            <UltraMinimal18 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph19 />
+            <UltraMinimal19 />
           </div>
           <div className="bg-[#1E1A2E] rounded-xl border border-[#3D3554] p-6">
-            <Graph20 />
+            <UltraMinimal20 />
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import InputSection from '../components/InputSection'
-import ChartPlaceholder from '../components/ChartPlaceholder'
+import UltraMinimalChart from '../components/UltraMinimalChart'
+import { calculateLoanSchedule } from '../utils/loan'
+import { calculateInvestmentSchedule } from '../utils/investment'
 
 const loanFields = [
   { label: 'Loan Amount', name: 'loanAmount', placeholder: '50000' },
@@ -27,51 +29,90 @@ const Home = () => {
     setInvestmentValues((prev) => ({ ...prev, [name]: value }))
   }
 
+  const loanAmount = Number(loanValues.loanAmount) || 50000
+  const loanInterest = (Number(loanValues.loanInterest) || 6.5) / 100
+  const loanPayment = Number(loanValues.loanPayment) || 500
+
+  const initialAmount = Number(investmentValues.initialAmount) || 1000
+  const returnRate = (Number(investmentValues.returnRate) || 7) / 100
+  const monthlyContribution = Number(investmentValues.monthlyContribution) || 300
+
+  const chartData = useMemo(() => {
+    const loanData = calculateLoanSchedule(loanAmount, loanInterest, loanPayment, timeHorizon)
+    const investmentData = calculateInvestmentSchedule(initialAmount, returnRate, monthlyContribution, timeHorizon)
+
+    const loanBalanceData = [
+      {
+        id: 'Loan Balance',
+        data: loanData.map((d) => ({ x: d.year, y: d.balance })),
+      },
+      {
+        id: 'Interest Paid',
+        data: loanData.map((d) => ({ x: d.year, y: d.totalInterestPaid })),
+      },
+    ]
+
+    const investmentGrowthData = [
+      {
+        id: 'Investment Value',
+        data: investmentData.map((d) => ({ x: d.year, y: d.totalValue })),
+      },
+      {
+        id: 'Contributions',
+        data: investmentData.map((d) => ({ x: d.year, y: d.totalContributions })),
+      },
+    ]
+
+    const netWorthData = [
+      {
+        id: 'Net Worth',
+        data: loanData.map((d, i) => ({
+          x: d.year,
+          y: investmentData[i].totalValue - d.balance,
+        })),
+      },
+    ]
+
+    return { loanBalanceData, investmentGrowthData, netWorthData }
+  }, [loanAmount, loanInterest, loanPayment, initialAmount, returnRate, monthlyContribution, timeHorizon])
+
   return (
     <div className="min-h-screen bg-[#171421]">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-[#C792EA]">
-            Invest vs Pay Off Debt
-          </h1>
-          <p className="text-[#A9A1C1] mt-2">
-            Visualize the trade-offs between investing and paying off student loans
-          </p>
-        </header>
+        <div className="grid grid-cols-[1fr_3fr] gap-8">
+          <div className="space-y-6">
+            <InputSection
+              title="Loan Details"
+              fields={loanFields}
+              values={loanValues}
+              onChange={handleLoanChange}
+            />
+            <InputSection
+              title="Investment Details"
+              fields={investmentFields}
+              values={investmentValues}
+              onChange={handleInvestmentChange}
+            />
+            <div>
+              <label className="block text-sm font-medium text-[#A9A1C1] mb-2">
+                Time Horizon: {timeHorizon} years
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="30"
+                value={timeHorizon}
+                onChange={(e) => setTimeHorizon(Number(e.target.value))}
+                className="w-full accent-[#E5C07B]"
+              />
+            </div>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <InputSection
-            title="Loan Details"
-            fields={loanFields}
-            values={loanValues}
-            onChange={handleLoanChange}
-          />
-          <InputSection
-            title="Investment Details"
-            fields={investmentFields}
-            values={investmentValues}
-            onChange={handleInvestmentChange}
-          />
-        </div>
-
-        <div className="mb-8">
-          <label className="block text-sm font-medium text-[#A9A1C1] mb-2">
-            Time Horizon: {timeHorizon} years
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="30"
-            value={timeHorizon}
-            onChange={(e) => setTimeHorizon(Number(e.target.value))}
-            className="w-full max-w-md accent-[#E5C07B]"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <ChartPlaceholder title="Loan Balance" />
-          <ChartPlaceholder title="Investment Growth" />
-          <ChartPlaceholder title="Net Worth" />
+          <div className="space-y-6">
+            <UltraMinimalChart title="Loan Balance" data={chartData.loanBalanceData} />
+            <UltraMinimalChart title="Investment Growth" data={chartData.investmentGrowthData} />
+            <UltraMinimalChart title="Net Worth" data={chartData.netWorthData} />
+          </div>
         </div>
       </div>
     </div>
