@@ -9,7 +9,8 @@ const calculateInvestmentSchedule = (
   initialAmount: number,
   rate: number,
   monthlyContribution: number,
-  years: number
+  years: number,
+  extraContribution: number = 0,
 ): InvestmentDataPoint[] => {
   const dataPoints: InvestmentDataPoint[] = []
   let balance = initialAmount
@@ -24,8 +25,9 @@ const calculateInvestmentSchedule = (
 
   for (let year = 1; year <= years; year++) {
     for (let month = 1; month <= 12; month++) {
-      balance = (balance + monthlyContribution) * (1 + rate / 12)
-      totalContributions += monthlyContribution
+      const totalMonthly = monthlyContribution + extraContribution
+      balance = (balance + totalMonthly) * (1 + rate / 12)
+      totalContributions += totalMonthly
     }
 
     dataPoints.push({

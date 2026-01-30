@@ -13,6 +13,7 @@ const calculateLoanSchedule = (
   rate: number,
   monthlyPayment: number,
   years: number,
+  extraPayment: number = 0,
 ): LoanDataPoint[] => {
   const dataPoints: LoanDataPoint[] = [];
   let balance = principal;
@@ -30,7 +31,7 @@ const calculateLoanSchedule = (
 
       const interest = calculateMonthlyInterest(balance, rate);
       totalInterestPaid += interest;
-      balance = balance + interest - monthlyPayment;
+      balance = balance + interest - monthlyPayment - extraPayment;
 
       if (balance < 0) {
         balance = 0;
