@@ -25,13 +25,14 @@ Based on the darker, more muted theme from the screenshot.
 | Primary | `#E8E2F4` | Headings, titles |
 | Secondary | `#A9A1C1` | Labels, body text |
 | Muted | `#6B6483` | Placeholders, disabled text |
-| Input | `#E5C07B` | Input field values |
+| Input | `#fad003` | Input field values |
 
 ## Accents
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| Gold | `#E5C07B` | Slider accent, input text |
+| Gold | `#fad003` | Slider accent, input text |
+| Gold Hover | `#dcb817` | Slider hover state |
 | Purple | `#C792EA` | Focus rings, highlights |
 | Pink | `#F07178` | Errors, chart line 1 |
 | Cyan | `#89DDFF` | Links, hover states |
@@ -44,4 +45,4 @@ Based on the darker, more muted theme from the screenshot.
 |------|-----|-------|
 | Error | `#F07178` | Error messages |
 | Success | `#C3E88D` | Success messages |
-| Warning | `#E5C07B` | Warning messages |
+| Warning | `#fad003` | Warning messages |

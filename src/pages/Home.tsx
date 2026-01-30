@@ -55,7 +55,7 @@ const Home = () => {
                     value={additional.amount}
                     onChange={(e) => additional.setAmount(e.target.value)}
                     placeholder={additional.placeholder}
-                    className="w-full px-3 py-2 bg-[#171421] border border-[#3D3554] rounded-lg text-[#E5C07B] placeholder-[#6B6483] focus:ring-2 focus:ring-[#C792EA] focus:border-[#C792EA] outline-none transition-colors"
+                    className="w-full px-3 py-2 bg-[#171421] border border-[#3D3554] rounded-lg text-[#fad003] placeholder-[#6B6483] focus:ring-2 focus:ring-[#C792EA] focus:border-[#C792EA] outline-none transition-colors"
                   />
                   <input
                     type="checkbox"
@@ -73,7 +73,7 @@ const Home = () => {
                 onChange={(e) =>
                   additional.setSplitPercent(Number(e.target.value))
                 }
-                className="w-full accent-[#E5C07B]"
+                className="w-full accent-[#fad003]"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ const Home = () => {
                 max="30"
                 value={timeHorizon.years}
                 onChange={(e) => timeHorizon.setYears(Number(e.target.value))}
-                className="w-full accent-[#E5C07B]"
+                className="w-full accent-[#fad003]"
               />
             </div>
           </div>
