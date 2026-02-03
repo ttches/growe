@@ -9,17 +9,33 @@ const AdditionalPaymentsSection = () => {
     splitPercent,
     setSplitPercent,
     placeholder,
+    redirectAfterPayoff,
+    setRedirectAfterPayoff,
   } = useAdditionalFunds();
 
   return (
     <div className="bg-[#191831] rounded-xl border border-[#3D3554] p-6 space-y-4">
       <div>
-        <label
-          htmlFor="additionalPayments"
-          className="block text-sm font-medium text-[#a196e4] mb-1"
-        >
-          Additional Payments
-        </label>
+        <div className="flex justify-between items-center mb-1">
+          <label
+            htmlFor="additionalPayments"
+            className="text-sm font-medium text-[#a196e4]"
+          >
+            Additional Payments
+          </label>
+          <button
+            type="button"
+            onClick={() => setRedirectAfterPayoff(!redirectAfterPayoff)}
+            title="adds additional payments to investments after loan reaches 0"
+            className={`text-xs px-2 py-0.5 border rounded cursor-pointer transition-colors ${
+              redirectAfterPayoff
+                ? "text-[#a6ff90] border-[#a6ff90] hover:text-[#7cc87c] hover:border-[#7cc87c]"
+                : "text-[#6B6483] border-[#6B6483] hover:text-[#a196e4] hover:border-[#a196e4]"
+            }`}
+          >
+            $$$
+          </button>
+        </div>
         <div className="relative">
           <input
             type="text"
@@ -27,6 +43,7 @@ const AdditionalPaymentsSection = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder={placeholder}
+            autoComplete="off"
             className="w-full px-3 py-2 bg-[#15152a] border border-[#3D3554] rounded-lg text-[#fad003] placeholder-[#6B6483] focus:ring-2 focus:ring-[#d971d5] focus:border-[#d971d5] outline-none transition-colors"
           />
           <input

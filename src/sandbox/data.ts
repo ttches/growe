@@ -1,7 +1,8 @@
 import { calculateLoanSchedule } from '../utils/loan'
 import { calculateInvestmentSchedule } from '../utils/investment'
 
-const loanData = calculateLoanSchedule(50000, 0.065, 600, 15)
+const loanResult = calculateLoanSchedule(50000, 0.065, 600, 15)
+const loanData = loanResult.dataPoints
 const investmentData = calculateInvestmentSchedule(5000, 0.08, 500, 15)
 
 const loanChartData = {

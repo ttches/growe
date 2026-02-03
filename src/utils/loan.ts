@@ -9,16 +9,22 @@ const calculateMonthlyInterest = (balance: number, rate: number): number => {
   return balance * (rate / 12);
 };
 
+type LoanScheduleResult = {
+  dataPoints: LoanDataPoint[];
+  payoffMonth: number | null;
+};
+
 const calculateLoanSchedule = (
   principal: number,
   rate: number,
   monthlyPayment: number,
   years: number,
   extraPayment: number = 0,
-): LoanDataPoint[] => {
+): LoanScheduleResult => {
   const dataPoints: LoanDataPoint[] = [];
   let balance = principal;
   let totalInterestPaid = 0;
+  let payoffMonth: number | null = null;
 
   dataPoints.push({
     year: 0,
@@ -37,7 +43,8 @@ const calculateLoanSchedule = (
       yearlyInterest += interest;
       balance = balance + interest - monthlyPayment - extraPayment;
 
-      if (balance < 0) {
+      if (balance <= 0 && payoffMonth === null) {
+        payoffMonth = (year - 1) * 12 + month;
         balance = 0;
       }
     }
@@ -50,8 +57,8 @@ const calculateLoanSchedule = (
     });
   }
 
-  return dataPoints;
+  return { dataPoints, payoffMonth };
 };
 
 export { calculateMonthlyInterest, calculateLoanSchedule };
-export type { LoanDataPoint };
+export type { LoanDataPoint, LoanScheduleResult };

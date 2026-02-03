@@ -12,6 +12,8 @@ const calculateInvestmentSchedule = (
   monthlyContribution: number,
   years: number,
   extraContribution: number = 0,
+  additionalPaymentOverflow: number = 0,
+  additionalPaymentOverflowStart: number | null = null,
 ): InvestmentDataPoint[] => {
   const dataPoints: InvestmentDataPoint[] = []
   let balance = initialAmount
@@ -29,7 +31,13 @@ const calculateInvestmentSchedule = (
     const startingBalance = balance
     let yearlyContributions = 0
     for (let month = 1; month <= 12; month++) {
-      const totalMonthly = monthlyContribution + extraContribution
+      const currentMonth = (year - 1) * 12 + month
+      const overflow =
+        additionalPaymentOverflowStart !== null &&
+        currentMonth >= additionalPaymentOverflowStart
+          ? additionalPaymentOverflow
+          : 0
+      const totalMonthly = monthlyContribution + extraContribution + overflow
       balance = (balance + totalMonthly) * (1 + rate / 12)
       totalContributions += totalMonthly
       yearlyContributions += totalMonthly

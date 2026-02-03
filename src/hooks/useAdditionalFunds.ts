@@ -13,6 +13,8 @@ export const useAdditionalFunds = () => {
     setAdditionalEnabled,
     splitPercent,
     setSplitPercent,
+    redirectAfterPayoff,
+    setRedirectAfterPayoff,
   } = useCashflowContext();
 
   const rawAmount = additionalAmount
@@ -33,5 +35,7 @@ export const useAdditionalFunds = () => {
     extraToLoan,
     extraToInvest,
     placeholder: String(DEFAULTS.amount),
+    redirectAfterPayoff,
+    setRedirectAfterPayoff,
   };
 };

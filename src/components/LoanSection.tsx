@@ -11,6 +11,7 @@ const LoanSection = () => {
     <button
       type="button"
       onClick={() => setUseMinPayment(!useMinPayment)}
+      title="use minimum payment that would pay off interest without changing loan balance"
       className={`text-xs px-2 py-0.5 border rounded cursor-pointer transition-colors ${
         useMinPayment
           ? "text-[#d971d5] border-[#d971d5] hover:text-[#9fffff] hover:border-[#9fffff]"

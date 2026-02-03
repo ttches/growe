@@ -9,17 +9,20 @@ import { calculateInvestmentSchedule } from "../utils/investment";
 export const useChartData = () => {
   const { parsed: loan } = useLoan();
   const { parsed: investment } = useInvestment();
-  const { extraToLoan, extraToInvest } = useAdditionalFunds();
+  const { extraToLoan, extraToInvest, redirectAfterPayoff } =
+    useAdditionalFunds();
   const { years } = useTimeHorizon();
 
   return useMemo(() => {
-    const loanData = calculateLoanSchedule(
+    const loanResult = calculateLoanSchedule(
       loan.amount,
       loan.rate,
       loan.payment,
       years,
       extraToLoan,
     );
+    const loanData = loanResult.dataPoints;
+    const payoffMonth = loanResult.payoffMonth;
 
     const investmentData = calculateInvestmentSchedule(
       investment.initialAmount,
@@ -27,6 +30,8 @@ export const useChartData = () => {
       investment.monthlyContribution,
       years,
       extraToInvest,
+      redirectAfterPayoff ? extraToLoan : 0,
+      redirectAfterPayoff ? payoffMonth : null,
     );
 
     const loanBalanceData = [
@@ -102,5 +107,6 @@ export const useChartData = () => {
     years,
     extraToLoan,
     extraToInvest,
+    redirectAfterPayoff,
   ]);
 };
