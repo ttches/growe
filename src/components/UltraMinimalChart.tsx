@@ -14,12 +14,14 @@ type UltraMinimalChartProps = {
   title: string;
   data: ChartSeries[];
   colors?: string[];
+  yMin?: number;
 };
 
 const UltraMinimalChart = ({
   title,
   data,
   colors = ["#d971d5", "#9fffff"],
+  yMin = 0,
 }: UltraMinimalChartProps) => {
   return (
     <div className="h-full">
@@ -27,7 +29,7 @@ const UltraMinimalChart = ({
         data={data}
         margin={{ top: 20, right: 20, bottom: 30, left: 60 }}
         xScale={{ type: "linear", min: 0, max: "auto" }}
-        yScale={{ type: "linear", min: 0, max: "auto" }}
+        yScale={{ type: "linear", min: yMin, max: "auto" }}
         curve="basis"
         enableArea={false}
         areaOpacity={0.04}

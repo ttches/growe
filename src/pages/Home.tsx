@@ -108,6 +108,7 @@ const Home = () => {
               <UltraMinimalChart
                 title="Net Worth"
                 data={chartData.netWorthData}
+                yMin={chartData.netWorthYMin}
               />
             </div>
           </div>

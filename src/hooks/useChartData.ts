@@ -54,17 +54,23 @@ export const useChartData = () => {
       },
     ];
 
+    const netWorthValues = loanData.map(
+      (d, i) => investmentData[i].totalValue - d.balance
+    );
+
     const netWorthData = [
       {
         id: "Net Worth",
         data: loanData.map((d, i) => ({
           x: d.year,
-          y: investmentData[i].totalValue - d.balance,
+          y: netWorthValues[i],
         })),
       },
     ];
 
-    return { loanBalanceData, investmentGrowthData, netWorthData };
+    const netWorthYMin = Math.min(0, netWorthValues[0]);
+
+    return { loanBalanceData, investmentGrowthData, netWorthData, netWorthYMin };
   }, [
     loan.amount,
     loan.rate,
