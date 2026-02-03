@@ -28,7 +28,7 @@ const AdditionalPaymentsSection = () => {
             onClick={() => setRedirectAfterPayoff(!redirectAfterPayoff)}
             title="adds additional payments to investments after loan reaches 0"
             className={`text-xs px-2 py-0.5 border rounded cursor-pointer transition-colors ${
-              redirectAfterPayoff
+              enabled && redirectAfterPayoff
                 ? "text-[#a6ff90] border-[#a6ff90] hover:text-[#7cc87c] hover:border-[#7cc87c]"
                 : "text-[#6B6483] border-[#6B6483] hover:text-[#a196e4] hover:border-[#a196e4]"
             }`}
@@ -60,7 +60,7 @@ const AdditionalPaymentsSection = () => {
         max="100"
         value={splitPercent}
         onChange={(e) => setSplitPercent(Number(e.target.value))}
-        className="w-full accent-[#fad003]"
+        className={`w-full accent-[#fad003] transition-opacity ${enabled ? "" : "opacity-50"}`}
       />
     </div>
   );
