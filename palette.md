@@ -33,7 +33,7 @@ Based on the darker, more muted theme from the screenshot.
 |------|-----|-------|
 | Gold | `#fad003` | Slider accent, input text |
 | Gold Hover | `#dcb817` | Slider hover state |
-| Purple | `#d971d5` | Focus rings, highlights |
+| Purple | `#d971d5` | Focus rings, highlights, chart line 5 |
 | Red | `#ff638c` | Errors, chart line 1 |
 | Cyan | `#9fffff` | Links, hover states |
 | Green | `#a6ff90` | Success states, chart line 2 |

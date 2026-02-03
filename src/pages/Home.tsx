@@ -1,5 +1,6 @@
 import InputSection from "../components/InputSection";
 import UltraMinimalChart from "../components/UltraMinimalChart";
+import HoverPanel from "../components/HoverPanel";
 import { useLoan } from "../hooks/useLoan";
 import { useInvestment } from "../hooks/useInvestment";
 import { useAdditionalFunds } from "../hooks/useAdditionalFunds";
@@ -15,8 +16,8 @@ const Home = () => {
 
   return (
     <div className="h-screen bg-[#15152a] overflow-hidden">
-      <div className="h-full max-w-7xl mx-auto px-4 py-8">
-        <div className="h-full grid grid-cols-[1fr_3fr] gap-8">
+      <div className="h-full mx-auto px-4 py-8">
+        <div className="h-full grid grid-cols-[1fr_3fr_1fr] gap-8">
           <div className="space-y-6 overflow-y-auto">
             <InputSection
               fields={loan.fields}
@@ -111,6 +112,10 @@ const Home = () => {
                 yMin={chartData.netWorthYMin}
               />
             </div>
+          </div>
+
+          <div className="pt-6">
+            <HoverPanel />
           </div>
         </div>
       </div>

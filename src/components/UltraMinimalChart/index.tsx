@@ -1,4 +1,5 @@
-import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveLine, type LineSvgLayer, type LineSeries } from "@nivo/line";
+import ActivePoint from "./ActivePoint";
 
 type ChartDataPoint = {
   x: number;
@@ -24,7 +25,7 @@ const UltraMinimalChart = ({
   yMin = 0,
 }: UltraMinimalChartProps) => {
   return (
-    <div className="h-full">
+    <div className="h-full cursor-crosshair">
       <ResponsiveLine
         data={data}
         margin={{ top: 20, right: 20, bottom: 30, left: 60 }}
@@ -33,10 +34,11 @@ const UltraMinimalChart = ({
         curve="basis"
         enableArea={false}
         areaOpacity={0.04}
-        pointSize={0}
+        pointSize={10}
         lineWidth={2}
         useMesh={true}
         enableSlices="x"
+        sliceTooltip={() => null}
         enableGridX={false}
         enableGridY={false}
         theme={{
@@ -57,6 +59,19 @@ const UltraMinimalChart = ({
           },
         }}
         colors={colors}
+        layers={
+          [
+            "grid",
+            "axes",
+            "areas",
+            "lines",
+            "crosshair",
+            "slices",
+            ActivePoint,
+            "mesh",
+            "legends",
+          ] as LineSvgLayer<LineSeries>[]
+        }
         legends={[
           {
             anchor: "top-left",

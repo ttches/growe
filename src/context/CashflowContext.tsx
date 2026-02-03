@@ -1,5 +1,12 @@
 import { createContext, useState, useContext, type ReactNode } from "react";
 
+export type HoveredPoint = {
+  x: number;
+  serieId: string;
+  value: number;
+  color: string;
+};
+
 type CashflowState = {
   loanValues: Record<string, string>;
   setLoanValues: React.Dispatch<React.SetStateAction<Record<string, string>>>;
@@ -15,6 +22,8 @@ type CashflowState = {
   setSplitPercent: React.Dispatch<React.SetStateAction<number>>;
   timeHorizon: number;
   setTimeHorizon: React.Dispatch<React.SetStateAction<number>>;
+  hoveredPoints: HoveredPoint[] | null;
+  setHoveredPoints: (points: HoveredPoint[] | null) => void;
 };
 
 const CashflowContext = createContext<CashflowState | null>(null);
@@ -28,6 +37,7 @@ export const CashflowProvider = ({ children }: { children: ReactNode }) => {
   const [additionalEnabled, setAdditionalEnabled] = useState(true);
   const [splitPercent, setSplitPercent] = useState(50);
   const [timeHorizon, setTimeHorizon] = useState(10);
+  const [hoveredPoints, setHoveredPoints] = useState<HoveredPoint[] | null>(null);
 
   return (
     <CashflowContext.Provider
@@ -44,6 +54,8 @@ export const CashflowProvider = ({ children }: { children: ReactNode }) => {
         setSplitPercent,
         timeHorizon,
         setTimeHorizon,
+        hoveredPoints,
+        setHoveredPoints,
       }}
     >
       {children}
