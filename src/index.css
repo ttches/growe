@@ -3,4 +3,5 @@
 html,
 body {
   background-color: #15152a;
+  text-transform: lowercase;
 }
