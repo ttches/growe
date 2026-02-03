@@ -6,25 +6,6 @@ const DEFAULTS = {
   monthlyContribution: 300,
 } as const;
 
-export const investmentFields = [
-  {
-    label: "Initial Investment",
-    name: "initialAmount",
-    placeholder: String(DEFAULTS.initialAmount),
-  },
-  {
-    label: "Return Rate",
-    name: "returnRate",
-    placeholder: String(DEFAULTS.returnRate),
-    suffix: "%",
-  },
-  {
-    label: "Monthly Contribution",
-    name: "monthlyContribution",
-    placeholder: String(DEFAULTS.monthlyContribution),
-  },
-];
-
 export const useInvestment = () => {
   const { investmentValues, setInvestmentValues } = useCashflowContext();
 
@@ -46,7 +27,6 @@ export const useInvestment = () => {
   };
 
   return {
-    fields: investmentFields,
     values: investmentValues,
     onChange,
     parsed,

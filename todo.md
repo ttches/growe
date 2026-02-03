@@ -1,5 +1,3 @@
-on hover each year should show how much additional payments went to that year.
-
 additional payments go to investments after debt hits 0, as option
 
 The box should have commas and be formatted as currency with no cents

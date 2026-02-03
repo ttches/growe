@@ -6,49 +6,38 @@ const DEFAULTS = {
   payment: 500,
 } as const;
 
-export const loanFields = [
-  {
-    label: "Loan Amount",
-    name: "loanAmount",
-    placeholder: String(DEFAULTS.amount),
-  },
-  {
-    label: "Interest Rate",
-    name: "loanInterest",
-    placeholder: String(DEFAULTS.rate),
-    suffix: "%",
-  },
-  {
-    label: "Monthly Payment",
-    name: "loanPayment",
-    placeholder: String(DEFAULTS.payment),
-  },
-];
-
 export const useLoan = () => {
-  const { loanValues, setLoanValues } = useCashflowContext();
+  const { loanValues, setLoanValues, useMinPayment, setUseMinPayment } =
+    useCashflowContext();
 
   const onChange = (name: string, value: string) => {
     setLoanValues((prev) => ({ ...prev, [name]: value }));
   };
 
+  const amount = loanValues.loanAmount
+    ? Number(loanValues.loanAmount)
+    : DEFAULTS.amount;
+  const rate =
+    (loanValues.loanInterest
+      ? Number(loanValues.loanInterest)
+      : DEFAULTS.rate) / 100;
+  const minPayment = amount * (rate / 12);
+  const userPayment = loanValues.loanPayment
+    ? Number(loanValues.loanPayment)
+    : DEFAULTS.payment;
+
   const parsed = {
-    amount: loanValues.loanAmount
-      ? Number(loanValues.loanAmount)
-      : DEFAULTS.amount,
-    rate:
-      (loanValues.loanInterest
-        ? Number(loanValues.loanInterest)
-        : DEFAULTS.rate) / 100,
-    payment: loanValues.loanPayment
-      ? Number(loanValues.loanPayment)
-      : DEFAULTS.payment,
+    amount,
+    rate,
+    payment: useMinPayment ? minPayment : userPayment,
   };
 
   return {
-    fields: loanFields,
     values: loanValues,
     onChange,
     parsed,
+    minPayment,
+    useMinPayment,
+    setUseMinPayment,
   };
 };

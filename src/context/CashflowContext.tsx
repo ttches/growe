@@ -24,6 +24,8 @@ type CashflowState = {
   setTimeHorizon: React.Dispatch<React.SetStateAction<number>>;
   hoveredPoints: HoveredPoint[] | null;
   setHoveredPoints: (points: HoveredPoint[] | null) => void;
+  useMinPayment: boolean;
+  setUseMinPayment: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CashflowContext = createContext<CashflowState | null>(null);
@@ -38,6 +40,7 @@ export const CashflowProvider = ({ children }: { children: ReactNode }) => {
   const [splitPercent, setSplitPercent] = useState(50);
   const [timeHorizon, setTimeHorizon] = useState(10);
   const [hoveredPoints, setHoveredPoints] = useState<HoveredPoint[] | null>(null);
+  const [useMinPayment, setUseMinPayment] = useState(false);
 
   return (
     <CashflowContext.Provider
@@ -56,6 +59,8 @@ export const CashflowProvider = ({ children }: { children: ReactNode }) => {
         setTimeHorizon,
         hoveredPoints,
         setHoveredPoints,
+        useMinPayment,
+        setUseMinPayment,
       }}
     >
       {children}
