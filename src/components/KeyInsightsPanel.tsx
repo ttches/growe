@@ -49,7 +49,7 @@ const Section = ({
   children: React.ReactNode;
 }) => (
   <div className="bg-[#191831] rounded-lg border border-[#3D3554] p-3 space-y-2">
-    <div className="text-[#6B6483] text-xs uppercase tracking-wide">{title}</div>
+    <div className="text-[#a196e4] text-sm tracking-wide">{title}</div>
     {children}
   </div>
 );
@@ -59,8 +59,6 @@ const KeyInsightsPanel = ({ className = "" }: { className?: string }) => {
 
   return (
     <div className={`space-y-3 ${className}`}>
-      <div className="text-[#a196e4] text-lg font-medium">key insights</div>
-
       {insights.hasComparison && (
         <Section title={`with +$${Math.round(insights.extraAmount)}/mo`}>
           {insights.timeSavedMonths > 0 && (
