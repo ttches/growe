@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { formatWithCommas, parseNumericInput } from "../utils/formatNumber";
 
 type LabeledInputProps = {
   label: string;
@@ -10,6 +11,8 @@ type LabeledInputProps = {
   rightContent?: string;
   disabled?: boolean;
   labelExtra?: ReactNode;
+  numeric?: boolean;
+  allowDecimal?: boolean;
 };
 
 const LabeledInput = ({
@@ -22,7 +25,14 @@ const LabeledInput = ({
   rightContent,
   disabled,
   labelExtra,
+  numeric = true,
+  allowDecimal = false,
 }: LabeledInputProps) => {
+  const displayValue = numeric ? formatWithCommas(value) : value;
+
+  const handleChange = (v: string) =>
+    onChange(numeric ? parseNumericInput(v, allowDecimal) : v);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-1">
@@ -39,8 +49,8 @@ const LabeledInput = ({
           type="text"
           id={name}
           name={name}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          value={displayValue}
+          onChange={(e) => handleChange(e.target.value)}
           placeholder={placeholder}
           disabled={disabled}
           autoComplete="off"

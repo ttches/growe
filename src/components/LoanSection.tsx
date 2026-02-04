@@ -40,6 +40,7 @@ const LoanSection = () => {
           onChange={(v) => onChange("loanInterest", v)}
           placeholder="6.5"
           suffix="%"
+          allowDecimal
         />
         <LabeledInput
           label="Monthly Payment"

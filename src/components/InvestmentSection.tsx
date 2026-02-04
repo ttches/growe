@@ -23,6 +23,7 @@ const InvestmentSection = () => {
           onChange={(v) => onChange("returnRate", v)}
           placeholder="7"
           suffix="%"
+          allowDecimal
         />
         <LabeledInput
           label="Monthly Contribution"
